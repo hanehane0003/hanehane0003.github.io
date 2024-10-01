@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         integrity="sha512-k6RqeWeci5ZR/Lv4MR0sA0FfDOM3A0x88J+t6J+nRZb9qWf1k/Zjqk/aN5PFLK8sB5Dg23M/g6t3/A8mCC0sA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <style>
         /* 全体のスタイル */
         body {
@@ -67,6 +68,37 @@
             font-size: 16px;
         }
 
+        /* 投稿フォームのスタイル */
+        .post-form {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .post-form input,
+        .post-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .post-form button {
+            background-color: #87ceeb;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .post-form button:hover {
+            background-color: #69b0e5;
+        }
+
         /* フッターのスタイル */
         footer {
             background-color: #87ceeb;
@@ -89,60 +121,100 @@
             margin: 20px 0;
         }
     </style>
+    <!-- AdSense コード -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8040769124518662"
         crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <!-- ヘッダー部分 -->
-    <header>
-        <h1>ようこそ！インコのブログ</h1>
-    </header>
+    <div id="app">
+        <!-- ヘッダー部分 -->
+        <header>
+            <h1>ようこそ！インコのブログ</h1>
+        </header>
 
-    <!-- メインコンテンツ部分 -->
-    <main>
-        <div class="content">
-            <!-- ブログ投稿 -->
-            <div class="post">
-                <h2>インコの生活について</h2>
-                <p>インコは非常に知能が高く、人の言葉を覚えることができます！</p>
-            </div>
-            <div class="post">
-                <h2>インコの健康管理</h2>
-                <p>インコは社会的な生き物で、孤独を感じるとストレスを受けることがあります。</p>
-            </div>
-            <div class="post">
-                <h2>インコの種類と特徴</h2>
-                <p>インコの種類によっては、100年以上生きることもあります！</p>
-            </div>
+        <!-- メインコンテンツ部分 -->
+        <main>
+            <div class="content">
+                <!-- 投稿フォーム -->
+                <div class="post-form">
+                    <h2>新しい投稿を追加</h2>
+                    <input type="text" v-model="newPost.title" placeholder="タイトルを入力" />
+                    <textarea v-model="newPost.content" placeholder="コンテンツを入力" rows="4"></textarea>
+                    <button @click="addPost">投稿する</button>
+                </div>
 
-            <!-- Google AdSense 広告を表示するための場所 -->
-            <div style="text-align: center;">
-                <script async
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8040769124518662"
-                    crossorigin="anonymous"></script>
+                <!-- ブログ投稿 -->
+                <div class="post" v-for="post in posts" :key="post.id">
+                    <h2>{{ post.title }}</h2>
+                    <p>{{ post.content }}</p>
+                </div>
 
-                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8040769124518662"
-                    data-ad-slot="6496793106" data-ad-format="auto" data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+                <!-- Google AdSense 広告を表示するための場所 -->
+                <div class="ads">
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8040769124518662"
+                        data-ad-slot="6496793106" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                <!-- ここまで広告 -->
+
             </div>
-            <!-- ここまで広告 -->
 
             <!-- サイドバー -->
             <div class="sidebar">
                 <h3>サイドバー</h3>
                 <p>最新の投稿</p>
+                <ul>
+                    <li v-for="post in posts" :key="post.id">
+                        {{ post.title }}
+                    </li>
+                </ul>
                 <p>カテゴリ</p>
                 <p>インコの特集</p>
             </div>
-    </main>
+        </main>
 
-    <!-- フッター部分 -->
-    <footer>
-        <p>&copy; 2024 インコのブログ</p>
-    </footer>
+        <!-- フッター部分 -->
+        <footer>
+            <p>&copy; 2024 インコのブログ</p>
+        </footer>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                posts: [
+                    { id: 1, title: 'インコの生活について', content: 'インコは非常に知能が高く、人の言葉を覚えることができます！' },
+                    { id: 2, title: 'インコの健康管理', content: 'インコは社会的な生き物で、孤独を感じるとストレスを受けることがあります。' },
+                    { id: 3, title: 'インコの種類と特徴', content: 'インコの種類によっては、100年以上生きることもあります！' }
+                ],
+                newPost: {
+                    title: '',
+                    content: ''
+                }
+            },
+            methods: {
+                addPost() {
+                    if (this.newPost.title && this.newPost.content) {
+                        const newId = this.posts.length + 1;
+                        this.posts.push({
+                            id: newId,
+                            title: this.newPost.title,
+                            content: this.newPost.content
+                        });
+                        // フォームをリセット
+                        this.newPost.title = '';
+                        this.newPost.content = '';
+                    } else {
+                        alert("タイトルとコンテンツを入力してください。");
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
