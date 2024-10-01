@@ -5,22 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>インコのかわいいブログ</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-        integrity="sha512-k6RqeWeci5ZR/Lv4MR0sA0FfDOM3A0x88J+t6J+nRZb9qWf1k/Zjqk/aN5PFLK8sB5Dg23M/g6t3/A8mCC0sA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         /* 全体のスタイル */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f0f8ff;
+            background-color: #f8f9fa;
             color: #333;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
 
         /* ヘッダーのスタイル */
         header {
-            background-color: #87ceeb;
+            background-color: #007bff;
             color: white;
             text-align: center;
             padding: 20px 0;
@@ -34,46 +33,51 @@
 
         /* メインコンテンツのスタイル */
         main {
-            display: flex;
             padding: 20px;
-        }
-
-        .content {
-            flex: 3;
-            margin-right: 20px;
-        }
-
-        .sidebar {
-            flex: 1;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: auto;
         }
 
         .post {
-            background-color: #fff;
-            margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .post h2 {
-            font-size: 24px;
-            margin-top: 0;
+            font-size: 28px;
+            margin-bottom: 10px;
         }
 
-        .post p {
-            font-size: 16px;
+        .post img {
+            max-width: 100%;
+            border-radius: 8px;
         }
 
-        /* フッターのスタイル */
+        .bird-button {
+            background-color: #ffcc99;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin: 10px 0;
+        }
+
+        .bird-button:hover {
+            background-color: #ffa07a;
+        }
+
         footer {
-            background-color: #87ceeb;
+            background-color: #007bff;
             color: white;
             text-align: center;
             padding: 10px 0;
-            position: relative;
+            position: fixed;
             width: 100%;
             bottom: 0;
         }
@@ -82,68 +86,66 @@
             margin: 0;
             font-size: 14px;
         }
-
-        /* 広告スタイル */
-        .ads {
-            text-align: center;
-            margin: 20px 0;
-        }
     </style>
 </head>
 
-<body>
+<body id="app">
     <!-- ヘッダー部分 -->
     <header>
-        <h1>ようこそ！インコのブログ</h1>
+        <h1>インコの世界へようこそ</h1>
     </header>
 
     <!-- メインコンテンツ部分 -->
     <main>
-        <div class="content">
-            <!-- ブログ投稿 -->
-            <div class="post">
-                <h2>インコの生活について</h2>
-                <p>インコは非常に知能が高く、人の言葉を覚えることができます！</p>
-            </div>
-            <div class="post">
-                <h2>インコの健康管理</h2>
-                <p>インコは社会的な生き物で、孤独を感じるとストレスを受けることがあります。</p>
-            </div>
-            <div class="post">
-                <h2>インコの種類と特徴</h2>
-                <p>インコの種類によっては、100年以上生きることもあります！</p>
-            </div>
-
-            <!-- Google AdSense 広告を表示するための場所 -->
-            <div class="ads">
-                <!-- Google AdSense スクリプト -->
-                <script async
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8040769124518662"
-                    crossorigin="anonymous"></script>
-                <!-- 広告ユニットの例 -->
-                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8040769124518662" <!-- アソシエイトID
-                    -->
-                    data-ad-slot="1234567890" <!-- ここに広告スロットのID -->
-                    data-ad-format="auto"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
+        <div v-for="post in posts" :key="post.id" class="post">
+            <h2>{{ post.title }}</h2>
+            <img :src="post.image" alt="インコの画像">
+            <p>{{ post.content }}</p>
         </div>
 
-        <!-- サイドバー -->
-        <div class="sidebar">
-            <h3>サイドバー</h3>
-            <p>最新の投稿</p>
-            <p>カテゴリ</p>
-            <p>インコの特集</p>
-        </div>
+        <button class="bird-button" @click="showFact">インコの豆知識を見る</button>
+        <p v-if="fact" id="bird-fact" style="font-size: 18px; color: #555;">{{ fact }}</p>
     </main>
 
     <!-- フッター部分 -->
     <footer>
         <p>&copy; 2024 インコのブログ</p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                posts: [
+                    {
+                        id: 1,
+                        title: 'うらぽの育て方',
+                        image: 'https://place-puppy.com/600x400',
+                        content: 'インコは社会的な生き物で、適切な環境が必要です。'
+                    },
+                    {
+                        id: 2,
+                        title: 'インコの食事',
+                        image: 'https://place-puppy.com/600x400',
+                        content: 'インコには新鮮な果物や野菜を与えることが大切です。'
+                    }
+                ],
+                facts: [
+                    "インコは非常に知能が高く、人の言葉を覚えることができます！",
+                    "インコは社会的な生き物で、孤独を感じるとストレスを受けることがあります。",
+                    "インコの種類によっては、100年以上生きることもあります！",
+                    "インコは色鮮やかな羽毛を持ち、その色は健康状態を示すこともあります。"
+                ],
+                fact: ''
+            },
+            methods: {
+                showFact() {
+                    this.fact = this.facts[Math.floor(Math.random() * this.facts.length)];
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
