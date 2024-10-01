@@ -4,75 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>インコのかわいいサイトだよ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>インコのかわいいブログ</title>
     <style>
-        /* 全体のスタイル */
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #f0f8ff;
             color: #333;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
         }
 
-        /* ヘッダーのスタイル */
         header {
-            background-color: #007acc;
+            background-color: #87ceeb;
             color: white;
             text-align: center;
             padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-size: 36px;
             margin: 0;
         }
 
-        /* メインコンテンツのスタイル */
         main {
             padding: 20px;
-            text-align: center;
-            flex: 1;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .bird-button {
-            background-color: #ffcc99;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+        article {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .bird-button:hover {
-            background-color: #ffa07a;
+        h2 {
+            color: #ffcc99;
         }
 
-        /* インコの画像 */
         img {
-            width: 200px;
-            border-radius: 50%;
-            margin: 20px;
-            transition: transform 0.3s;
+            width: 100%;
+            border-radius: 8px;
+            margin: 10px 0;
         }
 
-        img:hover {
-            transform: scale(1.1);
-        }
-
-        /* フッターのスタイル */
         footer {
-            background-color: #007acc;
+            background-color: #87ceeb;
             color: white;
             text-align: center;
             padding: 10px 0;
@@ -86,27 +66,35 @@
             font-size: 14px;
         }
 
-        /* 広告のスタイル */
-        .ads-container {
+        .ads {
+            text-align: center;
             margin: 20px 0;
         }
     </style>
 </head>
 
 <body>
-    <!-- ヘッダー部分 -->
     <header>
-        <h1>ようこそ！インコの世界へ</h1>
+        <h1>インコのかわいいブログ</h1>
     </header>
 
-    <!-- メインコンテンツ部分 -->
     <main>
-        <h2>インコの名前は「うらぽ」です！</h2>
-        <img src="https://place-puppy.com/200x200" alt="インコの画像">
-        <p>このサイトでは、インコの生活や育て方について紹介しています。</p>
+        <!-- 記事1 -->
+        <article>
+            <h2>インコの名前は「うらぽ」です！</h2>
+            <img src="https://place-puppy.com/600x300" alt="インコの画像">
+            <p>このサイトでは、インコの生活や育て方について紹介しています。</p>
+        </article>
+
+        <!-- 記事2 -->
+        <article>
+            <h2>インコの豆知識</h2>
+            <img src="https://place-puppy.com/600x300" alt="インコの画像">
+            <p>インコは非常に知能が高く、人の言葉を覚えることができます！</p>
+        </article>
 
         <!-- Google AdSense 広告を表示するための場所 -->
-        <div class="ads-container" style="text-align: center;">
+        <div class="ads">
             <!-- Google AdSense スクリプト -->
             <script async
                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8040769124518662"
@@ -119,30 +107,11 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
-        <!-- ここまで広告 -->
-
-        <button class="bird-button" onclick="showFact()">インコの豆知識を見る</button>
-        <p id="bird-fact" style="font-size: 1.2rem; color: #555;"></p>
     </main>
 
-    <!-- フッター部分 -->
     <footer>
-        <p>&copy; 2024 インコのサイト</p>
+        <p>&copy; 2024 インコのブログ</p>
     </footer>
-
-    <script>
-        // JavaScriptで豆知識を表示する機能
-        function showFact() {
-            const facts = [
-                "インコは非常に知能が高く、人の言葉を覚えることができます！",
-                "インコは社会的な生き物で、孤独を感じるとストレスを受けることがあります。",
-                "インコの種類によっては、100年以上生きることもあります！",
-                "インコは色鮮やかな羽毛を持ち、その色は健康状態を示すこともあります。"
-            ];
-            const randomFact = facts[Math.floor(Math.random() * facts.length)];
-            document.getElementById('bird-fact').textContent = randomFact;
-        }
-    </script>
 </body>
 
 </html>
