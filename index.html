@@ -5,27 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>インコのかわいいサイトだよ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* 全体のスタイル */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Roboto', sans-serif;
             background-color: #f0f8ff;
             color: #333;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* ヘッダーのスタイル */
         header {
-            background-color: #87ceeb;
+            background-color: #007acc;
             color: white;
             text-align: center;
             padding: 20px 0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         header h1 {
-            font-size: 36px;
+            font-size: 2.5rem;
             margin: 0;
         }
 
@@ -33,14 +40,15 @@
         main {
             padding: 20px;
             text-align: center;
+            flex: 1;
         }
 
         .bird-button {
             background-color: #ffcc99;
             color: white;
             border: none;
-            padding: 10px 20px;
-            font-size: 18px;
+            padding: 12px 24px;
+            font-size: 1.2rem;
             cursor: pointer;
             border-radius: 5px;
             transition: background-color 0.3s;
@@ -55,22 +63,32 @@
             width: 200px;
             border-radius: 50%;
             margin: 20px;
+            transition: transform 0.3s;
+        }
+
+        img:hover {
+            transform: scale(1.1);
         }
 
         /* フッターのスタイル */
         footer {
-            background-color: #87ceeb;
+            background-color: #007acc;
             color: white;
             text-align: center;
             padding: 10px 0;
-            position: fixed;
-            width: 100%;
+            position: relative;
             bottom: 0;
+            width: 100%;
         }
 
         footer p {
             margin: 0;
             font-size: 14px;
+        }
+
+        /* 広告のスタイル */
+        .ads-container {
+            margin: 20px 0;
         }
     </style>
 </head>
@@ -88,16 +106,15 @@
         <p>このサイトでは、インコの生活や育て方について紹介しています。</p>
 
         <!-- Google AdSense 広告を表示するための場所 -->
-        <div style="text-align: center;">
+        <div class="ads-container" style="text-align: center;">
             <!-- Google AdSense スクリプト -->
             <script async
                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8040769124518662"
                 crossorigin="anonymous"></script>
 
             <!-- 広告ユニットの例 -->
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8040769124518662" <!-- アソシエイトID -->
-                data-ad-slot="1234567890" <!-- ここに広告スロットのID -->
-                data-ad-format="auto"></ins>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8040769124518662"
+                data-ad-slot="1234567890" data-ad-format="auto"></ins>
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
@@ -105,7 +122,7 @@
         <!-- ここまで広告 -->
 
         <button class="bird-button" onclick="showFact()">インコの豆知識を見る</button>
-        <p id="bird-fact" style="font-size: 18px; color: #555;"></p>
+        <p id="bird-fact" style="font-size: 1.2rem; color: #555;"></p>
     </main>
 
     <!-- フッター部分 -->
