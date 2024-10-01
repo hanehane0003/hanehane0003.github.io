@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,6 +74,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- ヘッダー部分 -->
     <header>
@@ -80,27 +82,31 @@
     </header>
 
     <!-- メインコンテンツ部分 -->
-<main>
-    <h2>インコの名前は「うらぽ」です！</h2>
-    <img src="https://place-puppy.com/200x200" alt="インコの画像">
-    <p>このサイトでは、インコの生活や育て方について紹介しています。</p>
+    <main>
+        <h2>インコの名前は「うらぽ」です！</h2>
+        <img src="https://place-puppy.com/200x200" alt="インコの画像">
+        <p>このサイトでは、インコの生活や育て方について紹介しています。</p>
 
-    <!-- Google AdSense 広告を表示するための場所 -->
-    <div style="text-align: center;">
-        <ins class="adsbygoogle"
-            style="display:block; width:300px; height:250px;"
-            data-ad-client="ca-pub-8040769124518662"
-            data-ad-slot="1234567890"
-            data-ad-format="auto"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-    <!-- ここまで広告 -->
+        <!-- Google AdSense 広告を表示するための場所 -->
+        <div style="text-align: center;">
+            <!-- Google AdSense スクリプト -->
+            <script async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8040769124518662"
+                crossorigin="anonymous"></script>
 
-    <button class="bird-button" onclick="showFact()">インコの豆知識を見る</button>
-    <p id="bird-fact" style="font-size: 18px; color: #555;"></p>
-</main>
+            <!-- 広告ユニットの例 -->
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8040769124518662" <!-- アソシエイトID -->
+                data-ad-slot="1234567890" <!-- ここに広告スロットのID -->
+                data-ad-format="auto"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        <!-- ここまで広告 -->
+
+        <button class="bird-button" onclick="showFact()">インコの豆知識を見る</button>
+        <p id="bird-fact" style="font-size: 18px; color: #555;"></p>
+    </main>
 
     <!-- フッター部分 -->
     <footer>
@@ -121,4 +127,5 @@
         }
     </script>
 </body>
+
 </html>
